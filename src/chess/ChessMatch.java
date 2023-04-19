@@ -16,6 +16,7 @@ public class ChessMatch {
     private Color currentPlayer;
     private Board board;
     private boolean check;
+    private boolean checkMate;
 
     private List<Piece> piecesOnTheBoard = new ArrayList<>();
     private List<Piece> capturedPieces = new ArrayList<>();
@@ -37,6 +38,10 @@ public class ChessMatch {
 
     public Color getCurrentPlayer(){
         return currentPlayer;
+    }
+
+    public boolean getCheckMate(){
+        return checkMate;
     }
 
     public ChessPiece[][] getpieces(){
@@ -68,7 +73,7 @@ public class ChessMatch {
             throw new ChessException("You can't put yourself in check");
         }
 
-        check = (testCheck(opponent(currentPlayer))) ? true : false;
+        check = testCheck(opponent(currentPlayer));
 
         nextTurn();
         return (ChessPiece) capturedPiece;
@@ -148,6 +153,9 @@ public class ChessMatch {
         }
         return false;
     }
+
+    
+
 
     private void placeNewPiece(char column, int row, ChessPiece piece){
         board.placePiece(piece,new ChessPosition(column,row).toPosition());

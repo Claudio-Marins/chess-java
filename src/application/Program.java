@@ -2,6 +2,7 @@ package application;
 
 import boardgame.Board;
 import boardgame.Position;
+import chess.ChessException;
 import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
@@ -38,6 +39,10 @@ public class Program {
                 if(capturedPiece != null){
                     captured.add(capturedPiece);
                 }
+            }
+            catch (ChessException e) {
+                System.out.println(e.getMessage());
+                sc.nextLine();
             }
             catch(InputMismatchException e){
                 System.out.println(e.getMessage());
